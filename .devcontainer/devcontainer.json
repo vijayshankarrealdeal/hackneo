@@ -1,0 +1,41 @@
+{
+	"name": "Full Development Environment",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "."
+		// No need to pass a codename arg here, just fix in Dockerfile.
+	},
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "latest",
+			"enableNonRootDocker": "true",
+			"moby": "true"
+		},
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "latest",
+			"enableNonRootDocker": "true",
+			"moby": "true"
+		}
+	},
+	"extensions": [
+		"ms-azuretools.vscode-docker",
+		"ms-vscode.go",
+		"golang.Go",
+		"github.vscode-pull-request-github",
+		"msjsdiag.vscode-react-native",
+		"eamodio.gitlens",
+		"neo4j.vscode-neo4j",
+		"esbenp.prettier-vscode"
+	],
+	"forwardPorts": [
+		7474,
+		7687,
+		3000,
+		8080
+	],
+	"postCreateCommand": "go version && node -v && npm -v && tinygo version && neo4j --version",
+	"remoteUser": "vscode"
+}
